@@ -17,6 +17,7 @@ import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.LoginPresente
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,11 +115,13 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
         progress.setVisibility(View.GONE);
     }
 
+    @OnClick(R.id.authLinkRegistro)
     @Override
     public void goToMain() {
-
+        mListener.goToRegistro();
     }
 
+    @OnClick(R.id.btnLogin)
     @Override
     public void login() {
         loginPresenter.login(txtEmailLogin.getText().toString(), txtPasswordLogin.getText().toString());
@@ -146,7 +149,6 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnLoginInteractionListener {
-        // TODO: Update argument type and name
-        //void onFragmentInteraction(Uri uri);
+        void goToRegistro();
     }
 }

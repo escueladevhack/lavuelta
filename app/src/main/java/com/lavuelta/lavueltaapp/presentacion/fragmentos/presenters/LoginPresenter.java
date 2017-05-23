@@ -42,7 +42,7 @@ public class LoginPresenter implements ILoginPresenter {
             });
 
         } catch (Exception e) {
-
+            view.mostrarError(e.getMessage());
         }
     }
 }

@@ -1,14 +1,23 @@
 package com.lavuelta.lavueltaapp.presentacion.fragmentos;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.lavuelta.lavueltaapp.R;
+import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.IRecordarPresenter;
+import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.RecordarPresenter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,9 +27,20 @@ import com.lavuelta.lavueltaapp.R;
  * Use the {@link RecordarPassFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecordarPassFragment extends Fragment {
+public class RecordarPassFragment extends Fragment implements IRecordarFragmentView {
 
     private OnRecordarPassInteractionListener mListener;
+
+    private IRecordarPresenter recordarPresenter;
+
+    @BindView(R.id.txtEmailRecordar)
+    EditText txtEmailRecordar;
+
+    @BindView(R.id.btnRecordarPass)
+    Button btnRecordarPass;
+
+    @BindView(R.id.progress)
+    ProgressBar progress;
 
     public RecordarPassFragment() {
         // Required empty public constructor
@@ -41,15 +61,11 @@ public class RecordarPassFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recordar_pass, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_recordar_pass, container, false);
+        ButterKnife.bind(this, view);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            //mListener.onFragmentInteraction(uri);
-        }
+        recordarPresenter = new RecordarPresenter(this);
+        return view;
     }
 
     @Override
@@ -69,6 +85,48 @@ public class RecordarPassFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void habilitarViews() {
+        setInputs(true);
+    }
+
+    @Override
+    public void deshabilitarViews() {
+        setInputs(false);
+    }
+
+    @Override
+    public void mostrarProgress() {
+        progress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void ocultarProgress() {
+        progress.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.authLinkLogin)
+    @Override
+    public void goToLogin() {
+        mListener.goToLogin();
+    }
+
+    @OnClick(R.id.btnRecordarPass)
+    @Override
+    public void recordarPassword() {
+
+    }
+
+    @Override
+    public void mostrarError(String error) {
+        Snackbar.make(getView(), error, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void setInputs(boolean habilitar) {
+        txtEmailRecordar.setEnabled(habilitar);
+        btnRecordarPass.setEnabled(habilitar);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -80,5 +138,6 @@ public class RecordarPassFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnRecordarPassInteractionListener {
+        void goToLogin();
     }
 }

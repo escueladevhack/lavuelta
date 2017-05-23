@@ -114,6 +114,7 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
         progress.setVisibility(View.GONE);
     }
 
+    @OnClick(R.id.authLinkLogin)
     @Override
     public void goToLogin() {
         mListener.goToLogin();

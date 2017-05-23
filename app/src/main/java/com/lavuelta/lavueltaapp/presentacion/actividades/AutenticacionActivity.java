@@ -22,7 +22,7 @@ public class AutenticacionActivity extends AppCompatActivity implements
 
     private void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frameAutenticacion, RegistroFragment.newInstance());
+        transaction.replace(R.id.frameAutenticacion, LoginFragment.newInstance());
         transaction.commit();
     }
 
@@ -30,6 +30,13 @@ public class AutenticacionActivity extends AppCompatActivity implements
     public void goToLogin() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frameAutenticacion, LoginFragment.newInstance());
+        transaction.commit();
+    }
+
+    @Override
+    public void goToRegistro() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameAutenticacion, RegistroFragment.newInstance());
         transaction.commit();
     }
 }

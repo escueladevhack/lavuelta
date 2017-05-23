@@ -2,22 +2,22 @@ package com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters;
 
 import com.lavuelta.lavueltaapp.dominio.AutenticacionBP;
 import com.lavuelta.lavueltaapp.dominio.IAutenticacionBP;
-import com.lavuelta.lavueltaapp.presentacion.fragmentos.IRegistroFragmentView;
+import com.lavuelta.lavueltaapp.presentacion.fragmentos.IRecordarFragmentView;
 
 /**
- * Created by jggomez on 18-May-17.
+ * Created by jggomez on 23-May-17.
  */
 
-public class RegistroPresenter implements IRegistroPresenter {
+public class RecordarPresenter implements IRecordarPresenter {
 
-    private IRegistroFragmentView view;
+    private IRecordarFragmentView view;
 
-    public RegistroPresenter(IRegistroFragmentView view) {
+    public RecordarPresenter(IRecordarFragmentView view) {
         this.view = view;
     }
 
     @Override
-    public void registrar(String nombre, String email, String password) {
+    public void recordarPassword(String email) {
         try {
 
             IAutenticacionBP autenticacionBP = new AutenticacionBP();
@@ -25,7 +25,7 @@ public class RegistroPresenter implements IRegistroPresenter {
             view.deshabilitarViews();
             view.mostrarProgress();
 
-            autenticacionBP.registrarUsuario(nombre, email, password, new ICallbackPresenter<Boolean>() {
+            autenticacionBP.recordarUsuario(email, new ICallbackPresenter<Boolean>() {
                 @Override
                 public void respuesta(Boolean resp) {
                     view.habilitarViews();
@@ -41,11 +41,9 @@ public class RegistroPresenter implements IRegistroPresenter {
                 }
             });
 
-
         } catch (Exception e) {
             view.mostrarError(e.getMessage());
         }
+
     }
-
-
 }
