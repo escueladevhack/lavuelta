@@ -8,4 +8,8 @@
     <string name="password_usuario">Password</string>
     <string name="crear_cuenta">Crear Cuenta</string>
     <string name="ingresar">Ya tienes un usuario. Ingresa!</string>
+    <string name="ingresar_cuenta">Ingresar</string>
+    <string name="crear_cuenta_link">Crea una nueva cuenta. Regístrate</string>
+    <string name="recordar_contrasena">Recordar Contraseña</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

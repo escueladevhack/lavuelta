@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "940424836394",
+    "firebase_url": "https://lavuelta-84c36.firebaseio.com",
+    "project_id": "lavuelta-84c36",
+    "storage_bucket": "lavuelta-84c36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940424836394:android:3b8e707d5393e522",
+        "android_client_info": {
+          "package_name": "com.lavuelta.lavueltaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940424836394-pg31vrt3kjhmi06gqhr0bkbolg3pnp59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lavuelta.lavueltaapp",
+            "certificate_hash": "a4d45109359fb93901b38c95bc98a70cf17feffc"
+          }
+        },
+        {
+          "client_id": "940424836394-7j946gbj3g5raes9fc89f26apr0vcse8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSjGmGp60E7sNkyawEeMduoSsWv2ITvFQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940424836394-7j946gbj3g5raes9fc89f26apr0vcse8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

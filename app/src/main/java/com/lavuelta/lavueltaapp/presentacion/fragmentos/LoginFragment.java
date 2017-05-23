@@ -7,44 +7,44 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.lavuelta.lavueltaapp.R;
-import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.IRegistroPresenter;
-import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.RegistroPresenter;
+import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.ILoginPresenter;
+import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.LoginPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnRegistroInteractionListener} interface
+ * {@link LoginFragment.OnLoginInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RegistroFragment#newInstance} factory method to
+ * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegistroFragment extends Fragment implements IRegistroFragmentView {
+public class LoginFragment extends Fragment implements ILoginFragmentView {
 
-    private IRegistroPresenter registroPresenter;
+    private OnLoginInteractionListener mListener;
 
-    @BindView(R.id.txtNombreRegistro)
-    EditText txtNombreRegistro;
+    private ILoginPresenter loginPresenter;
 
-    @BindView(R.id.txtEmailRegistro)
-    EditText txtEmailRegistro;
+    @BindView(R.id.txtEmailLogin)
+    EditText txtEmailLogin;
 
-    @BindView(R.id.txtPasswordRegistro)
-    EditText txtPasswordRegistro;
+    @BindView(R.id.txtPasswordLogin)
+    EditText txtPasswordLogin;
+
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
 
     @BindView(R.id.progress)
     ProgressBar progress;
 
-    private OnRegistroInteractionListener mListener;
-
-    public RegistroFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
@@ -52,11 +52,11 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment RegistroFragment.
+     * @return A new instance of fragment LoginFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RegistroFragment newInstance() {
-        RegistroFragment fragment = new RegistroFragment();
+    public static LoginFragment newInstance() {
+        LoginFragment fragment = new LoginFragment();
         return fragment;
     }
 
@@ -69,10 +69,10 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_registro, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
 
-        registroPresenter = new RegistroPresenter(this);
+        loginPresenter = new LoginPresenter(this);
 
         return view;
     }
@@ -80,11 +80,11 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnRegistroInteractionListener) {
-            mListener = (OnRegistroInteractionListener) context;
+        if (context instanceof OnLoginInteractionListener) {
+            mListener = (OnLoginInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnRegistroInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -115,17 +115,13 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
     }
 
     @Override
-    public void goToLogin() {
-        mListener.goToLogin();
+    public void goToMain() {
+
     }
 
-    @OnClick(R.id.btnCrearCuenta)
     @Override
-    public void registrar() {
-        registroPresenter.registrar(txtNombreRegistro.getText().toString(),
-                txtEmailRegistro.getText().toString(),
-                txtPasswordRegistro.getText().toString()
-        );
+    public void login() {
+        loginPresenter.login(txtEmailLogin.getText().toString(), txtPasswordLogin.getText().toString());
     }
 
     @Override
@@ -134,9 +130,9 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
     }
 
     private void setViews(boolean habilitado) {
-        txtNombreRegistro.setEnabled(habilitado);
-        txtEmailRegistro.setEnabled(habilitado);
-        txtPasswordRegistro.setEnabled(habilitado);
+        txtEmailLogin.setEnabled(habilitado);
+        txtPasswordLogin.setEnabled(habilitado);
+        btnLogin.setEnabled(habilitado);
     }
 
     /**
@@ -149,9 +145,8 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnRegistroInteractionListener {
-
-        void goToLogin();
-
+    public interface OnLoginInteractionListener {
+        // TODO: Update argument type and name
+        //void onFragmentInteraction(Uri uri);
     }
 }
