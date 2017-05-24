@@ -1,5 +1,6 @@
 package com.lavuelta.lavueltaapp.presentacion.actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -38,5 +39,12 @@ public class AutenticacionActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frameAutenticacion, RegistroFragment.newInstance());
         transaction.commit();
+    }
+
+    @Override
+    public void goToMain() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

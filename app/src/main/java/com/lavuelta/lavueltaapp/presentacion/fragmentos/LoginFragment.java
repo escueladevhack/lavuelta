@@ -74,6 +74,7 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
         ButterKnife.bind(this, view);
 
         loginPresenter = new LoginPresenter(this);
+        loginPresenter.isLogin();
 
         return view;
     }
@@ -117,8 +118,12 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
 
     @OnClick(R.id.authLinkRegistro)
     @Override
-    public void goToMain() {
+    public void goToRegistro() {
         mListener.goToRegistro();
+    }
+
+    public void goToMain() {
+        mListener.goToMain();
     }
 
     @OnClick(R.id.btnLogin)
@@ -150,5 +155,6 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
      */
     public interface OnLoginInteractionListener {
         void goToRegistro();
+        void goToMain();
     }
 }

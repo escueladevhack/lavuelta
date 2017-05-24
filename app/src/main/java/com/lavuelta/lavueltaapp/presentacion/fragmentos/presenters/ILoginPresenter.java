@@ -8,4 +8,8 @@ public interface ILoginPresenter {
 
     void login(String email, String password);
 
+    void guardarDatosUsuario(String uid, String email);
+
+    void isLogin();
+
 }

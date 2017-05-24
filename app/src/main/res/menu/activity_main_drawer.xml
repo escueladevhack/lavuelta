@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_addServicio"
+            android:icon="@drawable/ic_event_black_48dp"
+            android:title="@string/addServicios" />
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_person_pin_black_48dp"
+            android:title="@string/editPerfil" />
+    </group>
+
+    <item android:title="@string/contactenos">
+        <menu>
+            <item
+                android:id="@+id/nav_contactar"
+                android:icon="@drawable/ic_contact_phone_black_48dp"
+                android:title="@string/contactar" />
+        </menu>
+    </item>
+
+</menu>

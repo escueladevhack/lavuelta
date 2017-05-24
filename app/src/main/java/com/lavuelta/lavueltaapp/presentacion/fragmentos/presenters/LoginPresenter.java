@@ -3,6 +3,7 @@ package com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters;
 import com.lavuelta.lavueltaapp.dominio.AutenticacionBP;
 import com.lavuelta.lavueltaapp.dominio.IAutenticacionBP;
 import com.lavuelta.lavueltaapp.presentacion.fragmentos.ILoginFragmentView;
+import com.lavuelta.lavueltaapp.utilidades.Cache;
 
 /**
  * Created by jggomez on 23-May-17.
@@ -17,7 +18,7 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void login(String email, String password) {
+    public void login(final String email, String password) {
         try {
 
             IAutenticacionBP autenticacionBP = new AutenticacionBP();
@@ -25,11 +26,12 @@ public class LoginPresenter implements ILoginPresenter {
             view.deshabilitarViews();
             view.mostrarProgress();
 
-            autenticacionBP.loginUsuario(email, password, new ICallbackPresenter<Boolean>() {
+            autenticacionBP.loginUsuario(email, password, new ICallbackPresenter<String>() {
                 @Override
-                public void respuesta(Boolean resp) {
+                public void respuesta(String uid) {
                     view.habilitarViews();
                     view.ocultarProgress();
+                    guardarDatosUsuario(uid, email);
                     view.goToMain();
                 }
 
@@ -43,6 +45,19 @@ public class LoginPresenter implements ILoginPresenter {
 
         } catch (Exception e) {
             view.mostrarError(e.getMessage());
+        }
+    }
+
+    @Override
+    public void guardarDatosUsuario(String uid, String email) {
+        Cache.addValor("UID", uid);
+        Cache.addValor("EMAIL", email);
+    }
+
+    @Override
+    public void isLogin() {
+        if (!Cache.getValor("UID").equals("")){
+            view.goToMain();
         }
     }
 }

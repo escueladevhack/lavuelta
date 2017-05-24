@@ -16,6 +16,8 @@ public interface ILoginFragmentView {
 
     void goToMain();
 
+    void goToRegistro();
+
     void login();
 
     void mostrarError(String error);
