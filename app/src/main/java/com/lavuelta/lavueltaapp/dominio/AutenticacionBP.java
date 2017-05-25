@@ -10,15 +10,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lavuelta.lavueltaapp.entidades.Usuario;
 import com.lavuelta.lavueltaapp.presentacion.fragmentos.presenters.ICallbackPresenter;
+import com.lavuelta.lavueltaapp.utilidades.Constantes;
 
 /**
  * Created by jggomez on 18-May-17.
  */
 
 public class AutenticacionBP implements IAutenticacionBP {
-
-    private final String refUsuarios = "usuarios";
-
 
     @Override
     public void registrarUsuario(final String nombre, final String email, String password,
@@ -37,7 +35,7 @@ public class AutenticacionBP implements IAutenticacionBP {
                             DatabaseReference reference =
                                     FirebaseDatabase.getInstance().getReference();
 
-                            reference.child(refUsuarios).child(authResult.getUser().getUid()).setValue(usuario);
+                            reference.child(Constantes.PATH_USUARIOS).child(authResult.getUser().getUid()).setValue(usuario);
 
                             callback.respuesta(true);
                         }

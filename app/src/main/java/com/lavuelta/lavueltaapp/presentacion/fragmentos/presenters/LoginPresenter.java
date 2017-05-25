@@ -4,6 +4,7 @@ import com.lavuelta.lavueltaapp.dominio.AutenticacionBP;
 import com.lavuelta.lavueltaapp.dominio.IAutenticacionBP;
 import com.lavuelta.lavueltaapp.presentacion.fragmentos.ILoginFragmentView;
 import com.lavuelta.lavueltaapp.utilidades.Cache;
+import com.lavuelta.lavueltaapp.utilidades.Constantes;
 
 /**
  * Created by jggomez on 23-May-17.
@@ -50,8 +51,8 @@ public class LoginPresenter implements ILoginPresenter {
 
     @Override
     public void guardarDatosUsuario(String uid, String email) {
-        Cache.addValor("UID", uid);
-        Cache.addValor("EMAIL", email);
+        Cache.addValor(Constantes.KEY_UID_USUARIO, uid);
+        Cache.addValor(Constantes.KEY_EMAIL_USUARIO, email);
     }
 
     @Override

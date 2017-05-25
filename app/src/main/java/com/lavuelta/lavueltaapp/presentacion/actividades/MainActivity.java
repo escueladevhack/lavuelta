@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_addServicio) {
             // Handle the camera action
         } else if (id == R.id.nav_perfil) {
-
+            Intent intent = new Intent(this, PerfilUsuarioActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_contactar) {
 
         }

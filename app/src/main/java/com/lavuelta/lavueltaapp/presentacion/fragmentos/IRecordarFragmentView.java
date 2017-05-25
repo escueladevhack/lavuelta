@@ -1,22 +1,14 @@
 package com.lavuelta.lavueltaapp.presentacion.fragmentos;
 
+import com.lavuelta.lavueltaapp.utilidades.BaseView;
+
 /**
  * Created by jggomez on 23-May-17.
  */
 
-public interface IRecordarFragmentView {
-
-    void habilitarViews();
-
-    void deshabilitarViews();
-
-    void mostrarProgress();
-
-    void ocultarProgress();
+public interface IRecordarFragmentView extends BaseView {
 
     void goToLogin();
 
     void recordarPassword();
-
-    void mostrarError(String error);
 }

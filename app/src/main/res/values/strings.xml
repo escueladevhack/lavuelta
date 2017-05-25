@@ -23,4 +23,15 @@
     <string name="contactenos">Contactenos</string>
     <string name="contactar">Contactar</string>
     <string name="salir">Salir</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="imagen_perfil">Imagen Perfil de Usuario</string>
+    <string name="direccion_usuario">Dirección</string>
+    <string name="celular_usuario">Celular</string>
+    <string name="guardar">Guardar</string>
+
+    <string name="direccion_envio">Dirección o Ubicación de Envio</string>
+    <string name="direccion_destino">Dirección o Ubicación de Destino</string>
+    <string name="nombre_envia">Nombre quien Envia</string>
+    <string name="nombre_recibe">Nombre quien Recibe</string>
+    <string name="desc_servicio">Por favor explica el servicio:</string>
 </resources>
