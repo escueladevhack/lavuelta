@@ -10,15 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lavuelta.lavueltaapp.BD.ServicioBD;
 import com.lavuelta.lavueltaapp.R;
 import com.lavuelta.lavueltaapp.utilidades.Cache;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -40,6 +44,13 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @OnClick(R.id.fabServicio)
+    public void clickFabServicio() {
+         List<ServicioBD> list = SQLite.select().from(ServicioBD.class).queryList();
+        Intent intent = new Intent(this, ServicioActivity.class);
+        startActivity(intent);
     }
 
     @Override

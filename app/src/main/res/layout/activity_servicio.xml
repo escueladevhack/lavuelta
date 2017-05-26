@@ -32,7 +32,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inputDireccionEnvio"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/direccion_envio">
@@ -45,6 +45,14 @@
                 android:maxLength="@integer/max_long_nombres" />
 
         </android.support.design.widget.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/btnMapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/inputDireccionEnvio"
+            android:layout_toEndOf="@id/inputDireccionEnvio"
+            android:src="@drawable/maps30x30" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inputNombreEnvia"
@@ -102,20 +110,22 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/textDescServicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/inputNombreRecibe"
             android:layout_below="@id/inputNombreRecibe"
-            android:id="@+id/textDescServicio"
             android:layout_marginTop="10dp"
+            android:text="@string/desc_servicio"
             android:textColor="@color/colorPrimary"
-            android:textSize="15sp"
-            android:text="@string/desc_servicio"/>
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtDescServicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@id/textDescServicio"
+            android:layout_below="@id/textDescServicio"
             android:inputType="text"
             android:maxLength="@integer/max_long_direccion" />
 
