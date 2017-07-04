@@ -6,14 +6,33 @@ package com.lavuelta.lavueltaapp.entidades;
 
 public class Servicio {
 
+
     private String direccionEnvio;
     private String direccionDestino;
     private String nombreEnvia;
     private String nombreRecibe;
     private String descServicio;
+    private String estadoServicio;
+    private String fechaServicio;
 
     public Servicio() {
 
+    }
+
+    public String getEstadoServicio() {
+        return estadoServicio;
+    }
+
+    public void setEstadoServicio(String estadoServicio) {
+        this.estadoServicio = estadoServicio;
+    }
+
+    public String getFechaServicio() {
+        return fechaServicio;
+    }
+
+    public void setFechaServicio(String fechaServicio) {
+        this.fechaServicio = fechaServicio;
     }
 
     public String getDireccionEnvio() {

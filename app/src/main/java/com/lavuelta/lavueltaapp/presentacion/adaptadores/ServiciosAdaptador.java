@@ -37,12 +37,23 @@ public class ServiciosAdaptador extends RecyclerView.Adapter<ServiciosAdaptador.
     public void onBindViewHolder(ServicioViewHolder holder, int position) {
         holder.txtDireccionEnvio.setText(dataSet.get(position).getDireccionEnvio());
         holder.txtNombreEnvia.setText(dataSet.get(position).getNombreEnvia());
-        holder.txtFechaServicio.setText("20/08/2017");
+        holder.txtFechaServicio.setText(dataSet.get(position).getFechaServicio());
+        holder.txtEstadoServicio.setText(dataSet.get(position).getEstadoServicio());
     }
 
     @Override
     public int getItemCount() {
         return dataSet.size();
+    }
+
+    public void addDataset(List<Servicio> dataSet) {
+        this.dataSet = dataSet;
+        notifyDataSetChanged();
+    }
+
+    public void clearDataset() {
+        this.dataSet.clear();
+        notifyDataSetChanged();
     }
 
     public static class ServicioViewHolder extends RecyclerView.ViewHolder {
@@ -55,6 +66,9 @@ public class ServiciosAdaptador extends RecyclerView.Adapter<ServiciosAdaptador.
 
         @BindView(R.id.txtFechaServicio)
         TextView txtFechaServicio;
+
+        @BindView(R.id.txtEstadoServicio)
+        TextView txtEstadoServicio;
 
         public ServicioViewHolder(View view) {
             super(view);

@@ -9,5 +9,5 @@ import com.lavuelta.lavueltaapp.entidades.Servicio;
 public interface IServicioPresenter {
 
     void guardarServicio(Servicio servicio);
-    
+
 }

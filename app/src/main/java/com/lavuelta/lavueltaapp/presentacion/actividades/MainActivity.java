@@ -3,18 +3,25 @@ package com.lavuelta.lavueltaapp.presentacion.actividades;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import com.lavuelta.lavueltaapp.BD.ServicioBD;
 import com.lavuelta.lavueltaapp.R;
+import com.lavuelta.lavueltaapp.entidades.Servicio;
+import com.lavuelta.lavueltaapp.presentacion.actividades.presenters.MainPresenter;
+import com.lavuelta.lavueltaapp.presentacion.adaptadores.ServiciosAdaptador;
 import com.lavuelta.lavueltaapp.utilidades.Cache;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -22,7 +29,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
+
+    private ServiciosAdaptador adapter;
+    private MainPresenter mainPresenter;
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -32,6 +42,12 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.rvServicios)
+    RecyclerView rvServicios;
+
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +60,39 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        initAdapter();
+        initRecycler();
+
+        mainPresenter = new MainPresenter(this);
+        mainPresenter.obtenerServiciosxUsuario();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainPresenter.obtenerServiciosxUsuario();
+    }
+
+    private void initRecycler() {
+        rvServicios.setLayoutManager(new LinearLayoutManager(this));
+        rvServicios.setAdapter(adapter);
+    }
+
+    private void initAdapter() {
+        if (adapter == null) {
+            adapter = new ServiciosAdaptador(new ArrayList<Servicio>());
+        }
+    }
+
+    @Override
+    public void cargarServicios(List<Servicio> lstServicios) {
+        adapter.clearDataset();
+        adapter.addDataset(lstServicios);
     }
 
     @OnClick(R.id.fabServicio)
     public void clickFabServicio() {
-         List<ServicioBD> list = SQLite.select().from(ServicioBD.class).queryList();
         Intent intent = new Intent(this, ServicioActivity.class);
         startActivity(intent);
     }
@@ -104,5 +148,31 @@ public class MainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void habilitarViews() {
+
+    }
+
+    @Override
+    public void deshabilitarViews() {
+
+    }
+
+    @Override
+    public void mostrarProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void ocultarProgress() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void mostrarError(String error) {
+        Snackbar.make(findViewById(android.R.id.content),
+                error, Snackbar.LENGTH_LONG).show();
     }
 }

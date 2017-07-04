@@ -16,7 +16,5 @@ public class LavueltaApp extends Application {
         super.onCreate();
 
         Cache.init(getApplicationContext());
-
-        FlowManager.init(getApplicationContext());
     }
 }

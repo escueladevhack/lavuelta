@@ -11,4 +11,5 @@ public class Constantes {
     public static String KEY_UID_USUARIO = "UID";
     public static String KEY_EMAIL_USUARIO = "EMAIL";
     public static String KEY_Direccion = "Direccion";
+    public static String ESTADO_INICIAL = "SOLICITADO";
 }
